@@ -16,3 +16,4 @@ venv/
 stinder/
 dating_app/
 mini app/
+.DS_Store

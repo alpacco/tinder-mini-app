@@ -1,0 +1,9 @@
+version: "1.0"
+services:
+  web:
+    image: node:16
+    command: ["npm", "start"]
+    ports:
+      - "8080:3000" # Маппинг портов: внешний порт 8080 → внутренний порт 3000
+    environment:
+      NODE_ENV: production

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Dating App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        label {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в Dating App!</h1>
+    <p>Заполните форму, чтобы создать профиль:</p>
+
+    <form id="profileForm">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="about">О себе:</label>
+        <textarea id="about" name="about" rows="4" cols="30" required></textarea><br>
+
+        <button type="submit">Сохранить профиль</button>
+    </form>
+
+    <script>
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем стандартную отправку формы
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const about = document.getElementById('about').value;
+
+            // Отправляем данные в бот
+            window.Telegram.WebApp.sendData(JSON.stringify({
+                action: 'save_profile',
+                data: {
+                    name: name,
+                    age: age,
+                    about: about
+                }
+            }));
+
+            // Закрываем Mini App
+            window.Telegram.WebApp.close();
+        });
+    </script>
+</body>
+</html>

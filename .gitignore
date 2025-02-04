@@ -1,0 +1,18 @@
+# Системные файлы macOS
+.DS_Store
+
+# Временные файлы Python
+__pycache__/
+*.pyc
+
+# Виртуальное окружение
+venv/
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Другие ненужные файлы
+stinder/
+dating_app/
+mini app/

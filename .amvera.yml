@@ -1,7 +1,0 @@
-# .amvera.yml
-name: tinder-mini-app # Имя вашего приложения
-runtime: nodejs # Окружение выполнения
-ports:
-  - 3000 # Порт, который использует ваше приложение
-env: # Переменные окружения
-  NODE_ENV: production

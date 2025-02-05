@@ -1,17 +1,14 @@
 ---
 version: null
 meta:
-  environment: node
+  environment: python
   toolchain:
-    name: npm
-    version: 18
+    name: pip
+    version: 3.11
 build:
-  skip: "false"
-  artifacts:
-    '*': /
+  requirementsPath: requirements.txt
 run:
-  scriptName: index.js
+  scriptName: app.py
+  persistenceMount: /data
   containerPort: 80
   servicePort: 80
-  persistenceMount: /data
-  command: npm run start

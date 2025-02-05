@@ -1,7 +1,6 @@
 name: tinder-mini-app
-runtime: nodejs # Оставляем Node.js, так как это наш проект
+runtime: nodejs
 ports:
-  - 3000 # Используем порт 3000
+  - 3000
 env:
-  NODE_ENV: production # Добавляем наши переменные окружения
-  ENV_VAR: value # Если нужно, добавляем переменные из удаленного репозитория
+  NODE_ENV: production

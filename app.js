@@ -1,18 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
-app.set('view engine', 'ejs');
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+{
+    "name": "tinder-mini-app",
+    "version": "1.0.0",
+    "description": "Telegram Mini App аналог Tinder",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "body-parser": "^1.20.2",
+      "ejs": "^3.1.8"
+    }
+  }

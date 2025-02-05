@@ -7,18 +7,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alpacco/ST.git"
+    "url": "https://git.amvera.ru/alpaccodev/seligertinder"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alpacco/ST/issues"
-  },
-  "homepage": "https://github.com/alpacco/ST#readme",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.9",
     "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
     "express": "^4.21.2"
   }
 }

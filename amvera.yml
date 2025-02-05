@@ -1,9 +1,0 @@
-version: 1
-build:
-  image: node:16 # Версия Node.js
-  commands:
-    - npm install
-    - npm run build # Если у вас есть процесс сборки
-run:
-  command: ["node", "server.js"] # Ваш основной файл сервера
-  port: 3000 # Порт вашего приложения

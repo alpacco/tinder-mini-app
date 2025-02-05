@@ -1,32 +1,14 @@
-<<<<<<< HEAD
-=======
 ---
 version: null
->>>>>>> 0dc25ed913c0006b3ed215120d03406a04bfe50f
 meta:
   environment: node
   toolchain:
     name: npm
-<<<<<<< HEAD
-    version: "18"
-=======
     version: 18
->>>>>>> 0dc25ed913c0006b3ed215120d03406a04bfe50f
 build:
   skip: false
   additionalCommands: null
   artifacts:
-<<<<<<< HEAD
-    "*": /
-run:
-  scriptName: app.js
-  scriptArguments: null
-  nodeArguments: null
-  command: npm start
-  persistenceMount: /data
-  containerPort: "3000"
-  servicePort: "3000"
-=======
     '*': /
 run:
   scriptName: index.js
@@ -36,4 +18,3 @@ run:
   persistenceMount: /data
   containerPort: 80
   servicePort: 80
->>>>>>> 0dc25ed913c0006b3ed215120d03406a04bfe50f

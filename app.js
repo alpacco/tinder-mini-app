@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 80; // Используйте PORT из окружения или 3000 по умолчанию
+const port = process.env.PORT || 3000; // Используйте PORT из окружения или 3000 по умолчанию
 
 // Поддержка статических файлов
 app.use(express.static('public'));

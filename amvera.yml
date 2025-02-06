@@ -7,6 +7,7 @@ build:
   skip: false # Не пропускать процесс сборки
   additionalCommands: null # Дополнительные команды (если есть)
   artifacts:
+   requirementsPath: requirements.txt
     "*": / # Все файлы будут доступны в корневой директории контейнера
 run:
   scriptName: app.js # Главный файл сервера (вместо main.py или app.py)
@@ -14,5 +15,5 @@ run:
   nodeArguments: null # Аргументы для Node.js (обычно не нужны)
   command: npm start # Команда для запуска приложения
   persistenceMount: /data # Монтирование постоянного хранилища (необязательно)
-  containerPort: "3000" # Порт, который использует ваше приложение
+  containerPort: "8080" # Порт, который использует ваше приложение
   servicePort: "3000" # Порт, который будет открыт для внешнего мира

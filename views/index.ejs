@@ -17,42 +17,103 @@
         <% } else { %>
             <p>No more users</p>
         <% } %>
+
+        <!-- Кнопки Like и Dislike -->
+        <div class="buttons">
+            <button id="dislike-btn">Dislike</button>
+            <button id="like-btn">Like</button>
+        </div>
     </div>
 
     <script>
+        // Инициализация Telegram Web App API
+        if (window.Telegram && Telegram.WebApp) {
+            const tg = Telegram.WebApp;
+
+            // Показываем заголовок приложения
+            tg.setHeaderColor('#ffffff'); // Белый фон заголовка
+            tg.setBackgroundColor('#f5f5f5'); // Фон приложения
+            tg.ready();
+
+            // Получаем данные пользователя
+            const initData = tg.initDataUnsafe;
+            if (initData && initData.user) {
+                const user = initData.user;
+                console.log('Authenticated user:', user);
+
+                // Отправляем данные пользователя на сервер
+                fetch('/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(user)
+                });
+            }
+
+            // Настройка кнопки MainButton
+            tg.MainButton.text = "Send Data";
+            tg.MainButton.show();
+            tg.MainButton.onClick(() => {
+                tg.sendData(JSON.stringify({ action: "send_data", message: "Hello from Mini App!" }));
+            });
+        } else {
+            console.warn('Telegram Web App API is not available');
+        }
+
         // Инициализация Hammer.js
         const card = document.getElementById('card');
         if (card) {
             const hammertime = new Hammer(card);
 
-            // Обработка свайпа вправо (Like)
+            // Анимация свайпа вправо (Like)
             hammertime.on('swiperight', () => {
-                console.log('Like');
-                fetch('/like', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ userId: '<%= users[0].id %>' })
-                }).then(() => {
-                    window.location.reload();
-                });
+                card.style.transform = 'translateX(100%) rotate(30deg)';
+                setTimeout(() => {
+                    fetch('/like', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }, 300); // Задержка для завершения анимации
             });
 
-            // Обработка свайпа влево (Dislike)
+            // Анимация свайпа влево (Dislike)
             hammertime.on('swipeleft', () => {
-                console.log('Dislike');
-                fetch('/dislike', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ userId: '<%= users[0].id %>' })
-                }).then(() => {
-                    window.location.reload();
-                });
+                card.style.transform = 'translateX(-100%) rotate(-30deg)';
+                setTimeout(() => {
+                    fetch('/dislike', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }, 300); // Задержка для завершения анимации
             });
         }
+
+        // Обработка нажатия на кнопку Like
+        document.getElementById('like-btn')?.addEventListener('click', () => {
+            fetch('/like', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
+            }).then(() => {
+                window.location.reload();
+            });
+        });
+
+        // Обработка нажатия на кнопку Dislike
+        document.getElementById('dislike-btn')?.addEventListener('click', () => {
+            fetch('/dislike', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
+            }).then(() => {
+                window.location.reload();
+            });
+        });
     </script>
 </body>
 </html>

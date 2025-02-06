@@ -12,3 +12,5 @@ run:
   persistenceMount: /data
   containerPort: 80
   servicePort: 80
+  runtime: python
+command: python app.py

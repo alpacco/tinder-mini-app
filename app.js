@@ -20,23 +20,15 @@ let users = [
     { id: 3, name: 'Alice Johnson', photo: 'https://picsum.photos/id/1027/300/400' }
 ];
 
+// Массив для хранения зарегистрированных пользователей
+let registeredUsers = [];
+
 // Главная страница
 app.get('/', (req, res) => {
     if (users.length === 0) {
-        // Если пользователи закончились, отправляем сообщение
         return res.send('<h1>No more users to show</h1>');
     }
-    // Отправляем массив пользователей в шаблон index.ejs
     res.render('index', { users });
-});
-
-// Маршрут для получения данных пользователя из Telegram
-app.post('/auth', bodyParser.json(), (req, res) => {
-    const userData = req.body;
-    console.log('User authenticated:', userData);
-
-    // Здесь можно сохранить данные пользователя в базу данных или сессию
-    res.sendStatus(200);
 });
 
 // Маршрут для лайка
@@ -52,6 +44,18 @@ app.post('/dislike', bodyParser.json(), (req, res) => {
     const userId = req.body.userId;
     console.log(`User ${userId} disliked`);
     users.shift(); // Удаляем первого пользователя из массива
+    res.sendStatus(200);
+});
+
+// Маршрут для регистрации пользователя
+app.post('/register', bodyParser.json(), (req, res) => {
+    const { telegramId, name, gender } = req.body;
+    console.log(`User registered: ${name}, Gender: ${gender}`);
+
+    // Добавляем пользователя в массив
+    registeredUsers.push({ telegramId, name, gender });
+
+    // Отправляем успешный ответ
     res.sendStatus(200);
 });
 

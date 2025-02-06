@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 80; // Используйте PORT из окружения или 3000 по умолчанию
 
 // Поддержка статических файлов
 app.use(express.static('public'));
@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
 });
 
 // Запуск сервера
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(port, '0.0.0.0', () => { // Укажите явно хост '0.0.0.0'
+    console.log(`Server running on http://0.0.0.0:${port}`);
 });

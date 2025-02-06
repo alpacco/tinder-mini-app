@@ -1,3 +1,4 @@
+/* public/css/style.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,18 +10,28 @@ body {
     background-color: #f5f5f5;
 }
 
+#app {
+    text-align: center;
+}
+
 .card {
-    width: 80%;
-    max-width: 400px;
+    position: relative;
+    width: 300px;
+    height: 400px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .card img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 80%;
+    object-fit: cover;
+}
+
+.card h2 {
+    margin: 10px;
+    font-size: 20px;
 }

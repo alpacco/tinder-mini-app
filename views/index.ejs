@@ -23,9 +23,7 @@
         const tg = window.Telegram.WebApp;
         tg.ready();
 
-        // Логика свайпа
         let currentIndex = 0;
-        const users = JSON.parse('<%- JSON.stringify(users) %>'); // Получаем пользователей из EJS
 
         function loadNextUser() {
             const appDiv = document.getElementById('app');
@@ -42,7 +40,6 @@
             }
         }
 
-        // Добавьте обработчики свайпа (например, через Hammer.js)
         document.addEventListener('DOMContentLoaded', () => {
             const appDiv = document.getElementById('app');
             appDiv.addEventListener('swiped', () => {

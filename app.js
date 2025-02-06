@@ -10,6 +10,13 @@ app.use(express.static('public'));
 // Настройка шаблонизатора EJS
 app.set('view engine', 'ejs');
 
+// Массив пользователей
+const users = [
+    { id: 1, name: 'John Doe', photo: 'https://example.com/photo1.jpg' },
+    { id: 2, name: 'Jane Smith', photo: 'https://example.com/photo2.jpg' },
+    { id: 3, name: 'Alice Johnson', photo: 'https://example.com/photo3.jpg' }
+];
+
 // Главная страница
 app.get('/', (req, res) => {
     res.render('index', { users: [] }); // Передайте данные пользователей, если нужно

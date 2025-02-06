@@ -9,7 +9,7 @@
 <body>
     <div id="app">
         <% if (users.length > 0) { %>
-            <div class="card">
+            <div class="card" data-id="<%= users[0].id %>">
                 <img src="<%= users[0].photo %>" alt="<%= users[0].name %>">
                 <h2><%= users[0].name %></h2>
             </div>
@@ -23,7 +23,32 @@
         const tg = window.Telegram.WebApp;
         tg.ready();
 
-        // Добавьте здесь логику свайпа
+        // Логика свайпа
+        let currentIndex = 0;
+        const users = JSON.parse('<%- JSON.stringify(users) %>'); // Получаем пользователей из EJS
+
+        function loadNextUser() {
+            const appDiv = document.getElementById('app');
+            if (currentIndex < users.length - 1) {
+                currentIndex++;
+                appDiv.innerHTML = `
+                    <div class="card" data-id="${users[currentIndex].id}">
+                        <img src="${users[currentIndex].photo}" alt="${users[currentIndex].name}">
+                        <h2>${users[currentIndex].name}</h2>
+                    </div>
+                `;
+            } else {
+                appDiv.innerHTML = '<p>No more users</p>';
+            }
+        }
+
+        // Добавьте обработчики свайпа (например, через Hammer.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            const appDiv = document.getElementById('app');
+            appDiv.addEventListener('swiped', () => {
+                loadNextUser();
+            });
+        });
     </script>
 </body>
 </html>

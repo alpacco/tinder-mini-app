@@ -25,10 +25,16 @@ let registeredUsers = [];
 
 // Главная страница
 app.get('/', (req, res) => {
+    // Проверяем, зарегистрирован ли пользователь (пример логики)
+    const userRegistered = false; // Здесь можно добавить проверку из базы данных
+
     if (users.length === 0) {
+        // Если пользователи закончились, отправляем сообщение
         return res.send('<h1>No more users to show</h1>');
     }
-    res.render('index', { users });
+
+    // Отправляем массив пользователей и флаг регистрации в шаблон index.ejs
+    res.render('index', { users, userRegistered });
 });
 
 // Маршрут для лайка

@@ -77,62 +77,6 @@
                 });
             }
         }
-
-        // Инициализация Hammer.js
-        const card = document.getElementById('card');
-        if (card) {
-            const hammertime = new Hammer(card);
-
-            // Анимация свайпа вправо (Like)
-            hammertime.on('swiperight', () => {
-                card.style.transform = 'translateX(100%) rotate(30deg)';
-                setTimeout(() => {
-                    fetch('/like', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                }, 300); // Задержка для завершения анимации
-            });
-
-            // Анимация свайпа влево (Dislike)
-            hammertime.on('swipeleft', () => {
-                card.style.transform = 'translateX(-100%) rotate(-30deg)';
-                setTimeout(() => {
-                    fetch('/dislike', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                }, 300); // Задержка для завершения анимации
-            });
-        }
-
-        // Обработка нажатия на кнопку Like
-        document.getElementById('like-btn')?.addEventListener('click', () => {
-            fetch('/like', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
-            }).then(() => {
-                window.location.reload();
-            });
-        });
-
-        // Обработка нажатия на кнопку Dislike
-        document.getElementById('dislike-btn')?.addEventListener('click', () => {
-            fetch('/dislike', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: '<%= users[0]?.id %>' })
-            }).then(() => {
-                window.location.reload();
-            });
-        });
     </script>
 </body>
 </html>

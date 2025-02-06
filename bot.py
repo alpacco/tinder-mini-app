@@ -1,7 +1,7 @@
 import telebot
 
 # Замените YOUR_BOT_TOKEN на токен вашего бота
-bot = telebot.TeleBot("Y7876864114:AAFVKi6_1oPLPzE6jRf_9O0IO7GzNjTjDzo")
+bot = telebot.TeleBot("876864114:AAFVKi6_1oPLPzE6jRf_9O0IO7GzNjTjDzoEN")
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):

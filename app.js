@@ -1,4 +1,3 @@
-// Подключение необходимых модулей
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -27,28 +26,45 @@ app.get('/', (req, res) => {
     res.render('index', { users });
 });
 
-// Маршрут для обработки лайков
+// Маршрут для лайка
 app.post('/like', bodyParser.json(), (req, res) => {
     const userId = req.body.userId;
     console.log(`User ${userId} liked`);
-    
+
     // Удаляем первого пользователя из массива
-    users = users.filter(user => user.id !== userId);
+    users.shift();
 
     // Отправляем ответ клиенту
     res.sendStatus(200);
 });
 
-// Маршрут для обработки дизлайков
+// Маршрут для дизлайка
 app.post('/dislike', bodyParser.json(), (req, res) => {
     const userId = req.body.userId;
     console.log(`User ${userId} disliked`);
-    
+
     // Удаляем первого пользователя из массива
-    users = users.filter(user => user.id !== userId);
+    users.shift();
 
     // Отправляем ответ клиенту
     res.sendStatus(200);
+});
+
+// Интеграция с Telegram Web App API
+app.get('/telegram-webapp', (req, res) => {
+    if (window.Telegram && Telegram.WebApp) {
+        const tg = Telegram.WebApp;
+        tg.ready(); // Сообщаем Telegram, что приложение загружено
+
+        // Можно добавить дополнительные действия, например, отправку данных обратно в чат
+        tg.MainButton.text = "Send Data";
+        tg.MainButton.show();
+        tg.MainButton.onClick(() => {
+            tg.sendData(JSON.stringify({ action: "send_data", message: "Hello from Mini App!" }));
+        });
+    } else {
+        res.status(400).send("Telegram Web App API is not available");
+    }
 });
 
 // Запуск сервера на хосте 0.0.0.0 и указанном порте

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Seliger Tinder!</h1>
+    <button id="save-profile">Save Profile</button>
+
+    <script>
+        const saveProfileBtn = document.getElementById('save-profile');
+
+        saveProfileBtn.addEventListener('click', () => {
+            const profileData = {
+                action: 'save_profile',
+                data: {
+                    name: 'John Doe',
+                    age: 25,
+                    gender: 'male'
+                }
+            };
+
+            window.Telegram.WebApp.sendData(JSON.stringify(profileData));
+        });
+    </script>
+</body>
+</html>

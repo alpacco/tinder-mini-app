@@ -7,7 +7,6 @@ build:
   skip: false # Не пропускать процесс сборки
   additionalCommands: null # Дополнительные команды (если есть)
   artifacts:
-  requirementsPath: requirements.txt
     "*": / # Все файлы будут доступны в корневой директории контейнера
 run:
   scriptName: app.js # Главный файл сервера (вместо main.py или app.py)
